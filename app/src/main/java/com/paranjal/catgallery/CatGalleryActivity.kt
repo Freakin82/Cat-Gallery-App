@@ -16,10 +16,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import com.paranjal.catgallery.network.CatApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class CatGalleryActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,10 +42,11 @@ fun CatGallery() {
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
+        val catApiService = createCatApiService()
+
         coroutineScope.launch {
             try {
-                val result = fetchCatImages()
-                catImages = result
+                catImages = catApiService.getCatImages()
             } catch (e: Exception) {
                 isError = true
             } finally {
@@ -52,7 +56,6 @@ fun CatGallery() {
     }
 
     MaterialTheme {
-        // A surface container using the 'background' color from the theme
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
@@ -86,6 +89,16 @@ fun CatGallery() {
         }
     }
 }
+
+private fun createCatApiService(): CatApiService {
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.thecatapi.com/v1/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    return retrofit.create(CatApiService::class.java)
+}
+
 
 @Composable
 fun CatImageItem(catImage: CatImage) {
