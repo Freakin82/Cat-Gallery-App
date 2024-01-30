@@ -1,10 +1,10 @@
-package com.paranjal.catgallery.ui.viewmodel
+package com.paranjal.catgallery.features.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paranjal.catgallery.data.CatImage
+import com.paranjal.catgallery.features.data.CatImage
 import com.paranjal.catgallery.service.CatApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,7 +21,7 @@ class CatViewModel @Inject constructor(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    private val _isError = MutableLiveData<Boolean>()
+    private val _isError = MutableLiveData<Boolean>().apply { value = false }
     val isError: LiveData<Boolean> get() = _isError
 
     fun fetchCatImages() {

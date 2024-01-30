@@ -1,4 +1,4 @@
-package com.paranjal.catgallery.ui.activity
+package com.paranjal.catgallery.features.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -17,8 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.paranjal.catgallery.data.CatImage
-import com.paranjal.catgallery.ui.viewmodel.CatViewModel
+import com.paranjal.catgallery.features.data.CatImage
+import com.paranjal.catgallery.features.viewmodel.CatViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

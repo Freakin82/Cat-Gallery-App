@@ -83,6 +83,13 @@ dependencies {
     // hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")
+    // unit testing
+    val mockVersion = "1.12.4"
+    testImplementation("io.mockk:mockk:${mockVersion}")
+    testImplementation("io.mockk:mockk-android:${mockVersion}")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
+
 }
 kapt {
     correctErrorTypes = true

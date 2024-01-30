@@ -1,6 +1,6 @@
 package com.paranjal.catgallery.service
 
-import com.paranjal.catgallery.data.CatImage
+import com.paranjal.catgallery.features.data.CatImage
 import retrofit2.http.GET
 
 interface CatApiService {
