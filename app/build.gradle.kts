@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -78,4 +80,10 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     // compose livedata
     implementation("androidx.compose.runtime:runtime-livedata:1.6.0")
+    // hilt
+    implementation("com.google.dagger:hilt-android:2.48")
+    kapt("com.google.dagger:hilt-compiler:2.48")
+}
+kapt {
+    correctErrorTypes = true
 }

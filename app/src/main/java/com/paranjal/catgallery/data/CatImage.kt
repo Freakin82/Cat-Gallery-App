@@ -1,4 +1,4 @@
-package com.paranjal.catgallery
+package com.paranjal.catgallery.data
 
 data class CatImage(
     val id: String,

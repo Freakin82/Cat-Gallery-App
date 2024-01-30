@@ -1,13 +1,19 @@
-package com.paranjal.catgallery
+package com.paranjal.catgallery.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.paranjal.catgallery.network.CatApiService
+import com.paranjal.catgallery.data.CatImage
+import com.paranjal.catgallery.service.CatApiService
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CatViewModel : ViewModel() {
+@HiltViewModel
+class CatViewModel @Inject constructor(
+    private val catApiService: CatApiService
+) : ViewModel() {
 
     private val _catImages = MutableLiveData<List<CatImage>>()
     val catImages: LiveData<List<CatImage>> get() = _catImages
@@ -23,7 +29,7 @@ class CatViewModel : ViewModel() {
 
         viewModelScope.launch {
             try {
-                _catImages.value = CatApiService.create().getCatImages()
+                _catImages.value = catApiService.getCatImages()
             } catch (e: Exception) {
                 _isError.value = true
             } finally {
