@@ -76,5 +76,6 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
-
+    // compose livedata
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.0")
 }
